@@ -8,6 +8,8 @@ public class FeesManagementFeatureApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FeesManagementFeatureApplication.class, args);
+		
+		System.out.println("Spring Boot Application Started !!");
 	}
 
 }
