@@ -19,7 +19,7 @@ public class EnrollementController {
 	EnrollementService enrollementService;
 	
 	@PostMapping("/enroll")
-	public ResponseEntity<?> saveEnrollment(@RequestBody EnrollmentDTO dto) {
+	public ResponseEntity saveEnrollment(@RequestBody EnrollmentDTO dto) {
 	    try {
 	        Enrollment savedEnrollment = enrollementService.save(dto);
 	        return new ResponseEntity<>(savedEnrollment, HttpStatus.CREATED);

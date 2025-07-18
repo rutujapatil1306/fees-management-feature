@@ -26,6 +26,8 @@ public class User {
 	private LocalDateTime creTimeStamp;
 	private String status;
 	
+	
+	
 	 @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	 @JsonManagedReference
 	    private List<Enrollment> enrollments;

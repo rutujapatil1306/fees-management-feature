@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.Response.Response;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 
@@ -19,14 +20,17 @@ public class UserController {
 	UserService userService;
 	
 	@PostMapping("/users")
-	public ResponseEntity saveUser(@RequestBody User user) {
+	public ResponseEntity<Response> createUser(@RequestBody User user) {
 	    try {
 	        User savedUser = userService.save(user);
-	        return new ResponseEntity<>(savedUser, HttpStatus.CREATED); 
+	        return ResponseEntity.status(HttpStatus.CREATED)
+	                .body(new Response("User created successfully", savedUser, true));
 	    } catch (Exception e) {
-	        return new ResponseEntity<>("Error occurred: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR); // 500 Error
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                .body(new Response("Error: " + e.getMessage(), null, false));
 	    }
 	}
+
 
 
 }

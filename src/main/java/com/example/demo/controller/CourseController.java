@@ -28,7 +28,7 @@ public class CourseController {
 	CourseRepository courseRepository;
 	
 	@PostMapping("/course")
-	public ResponseEntity saveCourse(@RequestBody Course course) {
+	public ResponseEntity createCourse(@RequestBody Course course) {
 		try {
 			Course savedCourse = courseService.saveCourse(course);
 			return new ResponseEntity(savedCourse,HttpStatus.CREATED);
