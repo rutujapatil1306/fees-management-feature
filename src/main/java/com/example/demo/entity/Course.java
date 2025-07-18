@@ -3,6 +3,8 @@ package com.example.demo.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -22,7 +24,22 @@ public class Course {
     private Integer fees;
     private String syllabus;
     
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Enrollment> enrollments;
     
+    
+    
+    
+	public List<Enrollment> getEnrollments() {
+		return enrollments;
+	}
+	public void setEnrollments(List<Enrollment> enrollments) {
+		this.enrollments = enrollments;
+	}
+	public void setcId(Integer cId) {
+		this.cId = cId;
+	}
 	public String getSyllabus() {
 		return syllabus;
 	}

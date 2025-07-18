@@ -3,6 +3,8 @@ package com.example.demo.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -24,6 +26,16 @@ public class User {
 	private LocalDateTime creTimeStamp;
 	private String status;
 	
+	 @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	 @JsonManagedReference
+	    private List<Enrollment> enrollments;
+	 
+	public List<Enrollment> getEnrollments() {
+		return enrollments;
+	}
+	public void setEnrollments(List<Enrollment> enrollments) {
+		this.enrollments = enrollments;
+	}
 	public int getUid() {
 		return uid;
 	}
